@@ -7,8 +7,9 @@ editor: visual
 
 ## Quarto
 
-Un diseño es un arreglo espacial, diseños: DCA, DDCA, DCL, DFghjk
-<https://quarto.org>.
+Un diseño es un arreglo espacial, diseños: DCA, DDCA, DCL, DFghjk xdfgh <https://eoct-234.github.io/GIT_HUB_WEB_PAGE>.
+
+dfghjklZASWDEFROIN BCAIDCVWNIP
 
 ## Running Code
 
@@ -26,3 +27,5 @@ You can add options to executable code like this
 ```
 
 The `echo: false` option disables the printing of code (only output is displayed).
+
+kkbn
