@@ -7,7 +7,8 @@ editor: visual
 
 ## Quarto
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Un diseño es un arreglo espacial, diseños: DCA, DDCA, DCL, DFghjk
+<https://quarto.org>.
 
 ## Running Code
 
