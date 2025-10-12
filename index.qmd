@@ -28,8 +28,8 @@ You can add options to executable code like this
 
 The `echo: false` option disables the printing of code (only output is displayed).
 
-##Diseño experimental
-#DCA
+##Diseño experimental #DCA
+
 ```{r}
 # Instalar y cargar librería
 library(agricolae)
@@ -46,18 +46,8 @@ dca$book
 
 ```
 
-#DBCA
-Factor 1 -> dosis de fertilizante nitrogenada (kg/ha) 
-Factor 2-> cultivares de papa 
-- peruanita 
-- canchan 
-Tratamientos: 
-0 - testigo 
-50 - T1 
-1 00 - T2 
-Diseño: DBCA 
-Repeticiones: 4 
-UE -> 2 cultivos x 3 dosis x 4 repeticiones = 24 
+#DBCA Factor 1 -\> dosis de fertilizante nitrogenada (kg/ha) Factor 2-\> cultivares de papa - peruanita - canchan Tratamientos: 0 - testigo 50 - T1 1 00 - T2 Diseño: DBCA Repeticiones: 4 UE -\> 2 cultivos x 3 dosis x 4 repeticiones = 24
+
 ```{r}
 cultivares <- c("Peruanita", "Canchan")
 
