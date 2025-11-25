@@ -1,0 +1,32 @@
+---
+title: "TERCERA UNIDA"
+author: "Edgar"
+format: html
+editor: visual
+---
+
+Anotación de imágenes:
+
+- Fenotipado de imágenes o análisis de imágenes
+- Cómo mejorar la exportación de imágenes
+- Biometría nació con Fisher
+- Software = aplicaciones, software es el código de r
+- Trabajo: enigma ver película
+- ImageJ para evaluar imágenes
+- Trabajo de 3ra unidad:
+ + Buscar una estructura y se va a cuantificar
+ + Usar el método ImageJ (Manual) y con IA
+ + Dimensiones: largo y ancho
+ + Escala
+ + quatitatif plant (pagina web)
+ + Buscar un software que permita hacer todo el procedimiento de manera automatizada
+ + Crear una pagina web explicando que se ha usado
+- Anotación de imágene susando lybrari scale
+- 189 pixeles = 1 cm
+
+Como almacenar imágenes desde el computador:
+```{r}
+
+
+```
+
