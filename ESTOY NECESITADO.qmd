@@ -32,6 +32,25 @@ fb <- gs %>%
 View(fb)
 ```
 
+Si es \| se verifica dentro dee cada factor
+
+Si es \* todos contra todos para la compáración de medias
+
+ANOVA PARA HI
+
+```{r}
+anvhi <- aov(hi ~ geno*riego + bloque, fb)
+anova(anvhi)
+```
+
+Comparación de medias
+
+```{r}
+cmhi <- emmeans(anvhi, ~ riego*geno) %>% 
+  multcomp::cld(Letters = letters, decrasing = TRUE)
+
+```
+
 Gráfico de barras de hi
 
 ```{r}
@@ -40,7 +59,7 @@ ggplot(fb, aes(x = geno, y = hi, fill = riego)) +
                position = position_dodge(),
                color = "black") +
   stat_summary(fun.data = mean_se, geom = "errorbar",
-               position = position_dodge(.9),
+               position = position_dodge(.10),
                width = 0.2,
                color = "gray30") +
   scale_fill_manual(values = c(
@@ -61,8 +80,8 @@ Gráfico de línea de lfa
 ```{r}
 # Paleta gris y amarillo
 colores_riego <- c(
-  "seguia"   = "gray",  # gris
-  "irrigado" = "yellow"   # amarillo
+  "sequia"   = "gray",   # gris
+  "irrigado" = "yellow"  # amarillo
 )
 
 # Gráfico
@@ -82,12 +101,17 @@ ggplot(fb, aes(x = geno, y = lfa, color = riego, group = riego)) +
 Regresión lineal entre hi vs twue
 
 ```{r}
-ggplot(fb, aes(x = twue, y = hi)) +
-  geom_point(color = "red", size = 3) +          # Color de los puntos
-  geom_smooth(method = "lm", se = TRUE, color = "brown", linewidth = 1.2) +  # Color de la línea
-  labs(title = "Relación HI vs TWUE",
+ggplot(fb, aes(x = twue, y = hi, color = riego)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", se = TRUE, linewidth = 1.2) +
+  scale_color_manual(values = c(
+    "sequia"   = "red",      # color para sequía
+    "irrigado" = "brown"     # color para irrigado
+  )) +
+  labs(title = "Relación HI vs TWUE por Tratamiento de Riego",
        x = "TWUE",
-       y = "HI") +
+       y = "HI",
+       color = "Tratamiento") +
   theme_minimal()
 
 ```
