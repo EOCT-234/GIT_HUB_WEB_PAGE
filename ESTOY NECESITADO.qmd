@@ -1,0 +1,118 @@
+---
+title: "2025_12_02"
+author: "Edgar"
+format: html
+editor: visual
+---
+
+Librerias
+
+```{r}
+library(googlesheets4)
+library(tidyverse)
+library(lme4)
+library(emmeans)
+library(FactoMineR)
+library(ggplot2)
+library(multcomp)
+```
+
+Base de datos
+
+```{r}
+url <- "https://docs.google.com/spreadsheets/d/15r7ZwcZZHbEgltlF6gSFvCTFA-CFzVBWwg3mFlRyKPs/edit?gid=172957346#gid=172957346"
+
+gs <- url %>%
+  as_sheets_id()
+
+fb <- gs %>%
+  range_read(sheet = "fb") %>%  
+  mutate(across(c(riego:bloque), factor)) #para hacer factor esas columnas
+
+View(fb)
+```
+
+Gráfico de barras de hi
+
+```{r}
+ggplot(fb, aes(x = geno, y = hi, fill = riego)) +
+  stat_summary(fun = mean, geom = "bar",
+               position = position_dodge(),
+               color = "black") +
+  stat_summary(fun.data = mean_se, geom = "errorbar",
+               position = position_dodge(.9),
+               width = 0.2,
+               color = "gray30") +
+  scale_fill_manual(values = c(
+    "sequia"   = "#6A0DAD",  # violeta
+    "irrigado" = "#005FCE"   # azul
+  )) +
+  labs(title = "HI por Genotipo y Tratamiento de Riego",
+       x = "Genotipo",
+       y = "Índice de Cosecha (HI)",
+       fill = "Riego") +
+  theme_minimal()
+
+
+```
+
+Gráfico de línea de lfa
+
+```{r}
+# Paleta gris y amarillo
+colores_riego <- c(
+  "seguia"   = "gray",  # gris
+  "irrigado" = "yellow"   # amarillo
+)
+
+# Gráfico
+ggplot(fb, aes(x = geno, y = lfa, color = riego, group = riego)) +
+  stat_summary(fun = mean, geom = "line", linewidth = 1) +
+  stat_summary(fun = mean, geom = "point", size = 3) +
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.15) +
+  scale_color_manual(values = colores_riego) +
+  labs(title = "LFA por Genotipo y Tratamiento de Riego",
+       x = "Genotipo (geno)",
+       y = "LFA",
+       color = "Riego") +
+  theme_minimal()
+
+```
+
+Regresión lineal entre hi vs twue
+
+```{r}
+ggplot(fb, aes(x = twue, y = hi)) +
+  geom_point(color = "red", size = 3) +          # Color de los puntos
+  geom_smooth(method = "lm", se = TRUE, color = "brown", linewidth = 1.2) +  # Color de la línea
+  labs(title = "Relación HI vs TWUE",
+       x = "TWUE",
+       y = "HI") +
+  theme_minimal()
+
+```
+
+BOXPLOT
+
+```{r}
+library(ggplot2)
+
+# Paleta de colores para riego
+colores_riego <- c(
+  "sequia" = "#001C55",   # Azul Marino
+  "irrigado" = "#006DAA"  # Azul Claro
+
+)
+
+ggplot(fb, aes(x = geno, y = rwc_84, fill = riego)) +
+  geom_boxplot(position = position_dodge()) +
+  scale_fill_manual(values = colores_riego) +
+  labs(
+    title = "RWC por Genotipo y Tratamiento de Riego",
+    x = "Genotipo",
+    y = "RWC",
+    fill = "Riego"
+  ) +
+  theme_minimal()
+
+```
